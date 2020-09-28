@@ -1,0 +1,9 @@
+ body{
+  background-color: #1a1aff;
+text-align: center;
+color: red;
+}
+h1, a{
+text-decoration: none;
+  color: black;
+}
