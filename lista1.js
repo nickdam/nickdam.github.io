@@ -9,13 +9,13 @@ function ligar1 (){
 
   document.getElementById("luz1off"). src = 'lon.png';
   signal = 1000;
-  sendToAPI(signal);
+  sendToServer(signal);
 }
 function desligar1() {
 
   document.getElementById("luz1off"). src = 'loff.png';
   signal = 0;
-  sendToAPI(signal);
+  sendToServer(signal);
 }
 function ligar2 (){
   document.getElementById("luz2off"). src = 'lon.png';
@@ -44,11 +44,14 @@ function desligar6() {
   document.getElementById("luz6off"). src = 'loff.png';
 }
 
-function sendToAPI(state){
-
-  const http = new XMLHttpRequest();
-  http.open("GET", "https://api.thingspeak.com/update?api_key=Z37MSV1R5QBCQ9PP&field1=0" + state);
-  http.send();
-  http.onload = console.log(http.response.Text +" "+ state);
-}
-
+function sendToServer(state) {
+ var KEY = "2TTIUAQVMSBGGCUH";
+ //criar um objeto capaz de enviar dados via requisição HTTP GET
+ const http = new XMLHttpRequest();
+ //prepara um GET passando a váriavel lux como ultimo paramentro do link
+ http.open("GET", "https://api.thingspeak.com/update?api_key="+KEY+"&field1=0" + state);
+ //envia um GET
+ http.send();
+ //quando a requisição retornar ele chama o console e imprime o valor gerado
+ http.onload = console.log(http.responseText+" "+state);
+ }
